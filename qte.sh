@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 # Check if the user provided a command-line argument
 if [[ "$1" == "setup" ]]; then
@@ -60,11 +60,110 @@ echo " "
             if [ ! -d "$HOME/.nvm" ]; then
                 echo "Configuring NVM..."
                 mkdir ~/.nvm
-            export NVM_DIR="$HOME/.nvm"
-                . "/usr/local/opt/nvm/nvm.sh"
-                echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bash_profile
-                echo '. "/usr/local/opt/nvm/nvm.sh"' >> ~/.bash_profile
+                export NVM_DIR="$HOME/.nvm"
+                source "/usr/local/opt/nvm/nvm.sh"
+                echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+                echo 'source "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
             fi
+
+            # Install Slack using Homebrew
+            if [ "$(brew ls --versions slack)" = "" ]; then
+                echo "Installing Slack..."
+                brew install --cask slack
+            else
+                echo "Slack already installed"
+            fi
+
+            # Install Postman using Homebrew
+            if [ "$(command -v postman)" = "" ]; then
+                echo "Installing Slack..."
+                brew install --cask postman
+            else
+                echo "Postman already installed"
+            fi
+
+            # Install Yarn using Homebrew
+            if [ "$(command -v yarn)" = "" ]; then
+                echo "Installing yarn..."
+                brew install yarn
+            else
+                echo "yarn already installed"
+            fi
+
+            # Install VS code using Homebrew
+            if [ "$(command -v visual-studio)" = "" ]; then
+                echo "Installing visual-studio..."
+                brew install --cask visual-studio
+            else
+                echo "visual-studio already installed"
+            fi
+
+            # Install RBenv using Homebrew
+            if [ "$(command -v rbenv)" = "" ]; then
+                echo "Installing RBenv..."
+                brew install rbenv
+            else
+                echo "RBenv already installed"
+            fi
+
+            # Install Google Chrome using Homebrew
+            if [ "$(command -v google-chrome)" = "" ]; then
+                echo "Installing google-chrome..."
+                brew install --cask google-chrome
+            else
+                echo "google-chrome already installed"
+            fi
+
+            # Install 1Password using Homebrew
+            if [ "$(command -v google-chrome)" = "" ]; then
+                echo "Installing 1password..."
+                brew install --cask 1password
+            else
+                echo "1password already installed"
+            fi
+            ;;
+        2) 
+            echo "Installing extended programs..."
+            # Code to install programs
+            # Install Xcode Command Line Tools
+            
+            echo "Installing Xcode Command Line Tools..."
+            xcode-select --install
+
+            # Install Homebrew
+            if [ "$(command -v brew)" = "" ]; then
+                echo "Installing Homebrew..."
+                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            else
+                echo "Homebrew already installed"
+            fi
+
+            # Install Node.js using Homebrew
+            if [ "$(command -v node)" = "" ]; then
+                echo "Installing Node.js $NODE_VERSION..."
+                brew install node@$NODE_VERSION
+            else
+                echo "Node already installed"
+            fi
+
+            # Install NVM using Homebrew
+            if [ "$(command -v nvm)" = "" ]; then
+                echo "Installing NVM $NVM_VERSION..."
+                brew install nvm@$NVM_VERSION
+            else
+                echo "NVM already installed"
+            fi
+
+            # Configure NVM
+            if [ ! -d "$HOME/.nvm" ]; then
+                echo "Configuring NVM..."
+                mkdir ~/.nvm
+                export NVM_DIR="$HOME/.nvm"
+                source "/usr/local/opt/nvm/nvm.sh"
+                echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+                echo 'source "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
+            fi
+
 
             # Install Slack using Homebrew
             if [ "$(brew ls --versions slack)" = "" ]; then
@@ -96,6 +195,14 @@ echo " "
                 brew install rbenv
             else
                 echo "RBenv already installed"
+            fi
+
+            # Install VS code using Homebrew
+            if [ "$(command -v visual-studio)" = "" ]; then
+                echo "Installing visual-studio..."
+                brew install --cask visual-studio
+            else
+                echo "visual-studio already installed"
             fi
 
             # Install Google Chrome using Homebrew
@@ -340,7 +447,7 @@ else
     case $choice in
         1) 
             echo "Launching setup..."
-            bash qte.sh setup
+            zsh qte.sh setup
             ;;
         2) 
             echo "Quitting..."

@@ -3,6 +3,8 @@
 
 A CLI Tool to help you as a new (or old) qte:ie to setup your machine with the necessary programs that we most commonly use!🚀
 
+Please note: This CLI is only for Mac users.
+
 
 ## Programs
 These programs are installed upon running 
@@ -16,6 +18,7 @@ Default
 - Postman
 - Yarn
 - RBenv
+- Visual Studio Code
 - Google Chrome
 - 1Pass
 
