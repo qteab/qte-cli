@@ -7,6 +7,7 @@ A CLI Tool to help you as a new (or old) qte:ie to setup your machine with the n
 ## Programs
 These programs are installed upon running 
 
+Default
 - Xcode Command Line Tools
 - Homebrew
 - Node
@@ -16,6 +17,20 @@ These programs are installed upon running
 - Yarn
 - RBenv
 - Google Chrome
+- 1Pass
+
+Extended
+- All programs in the 'default' list
+- iTerm2
+- Fig
+- Notion
+- Flipper
+- Spotify
+- Docker
+- Cyberduck
+- Android Studio
+- Prepos
+
 
 
 ## Installation
@@ -48,6 +63,8 @@ You can now run the qte command in the terminal 🥳
 ```bash
   qte setup
 ```
+
+If you are prompted with a window about the installation of Xcode, press 'allow'
 
 
 ## Appendix
