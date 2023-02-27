@@ -18,11 +18,17 @@ These programs are installed upon running
 - Google Chrome
 
 
-
-
 ## Installation
 
 To install the CLI Tool on your machine follow these steps:
+
+If you don't have git installed Download the [.zip file](https://github.com/qteab/qte-cli/archive/refs/heads/main.zip)
+
+Open the .zip file and save the files in a directory of your choosing and enter the folder in the terminal.
+
+```bash
+  cd path/to/qte.sh
+```
 
 Make it executable permissions using 
 
