@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Check if Homebrew is installed
-if [[ $(command -v brew) == "" ]]; then
-    echo "Homebrew is not installed. Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
+# # Check if Homebrew is installed
+# if [[ $(command -v brew) == "" ]]; then
+#     echo "Homebrew is not installed. Installing Homebrew..."
+#     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# fi
 
 PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
@@ -131,12 +131,21 @@ if [[ "$1" == "setup" ]]; then
             # Uninstall the programs
             echo "Uninstalling programs..."
             echo "Uninstalling Node..."
-            brew uninstall node@$NODE_VERSION
+            brew uninstall node
             echo "Uninstalling NVM..."
-            brew uninstall nvm@$NVM_VERSION
+            brew uninstall nvm
             echo "Uninstalling Slack..."
             brew uninstall --cask slack
-
+            echo "Uninstalling Postman..."
+             brew uninstall --cask postman
+            echo "Uninstalling Yarn..."
+            brew uninstall yarn
+            echo "Uninstalling RBenv..."
+            rbenv versions
+            rbenv uninstall x.y.z # uninstall all versions from the last step
+            brew uninstall rbenv
+            echo "Uninstalling Google Chrome..."
+            brew uninstall --cask google-chrome
             echo "Programs uninstalled successfully!"
             ;;
         4) 
