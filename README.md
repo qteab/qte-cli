@@ -42,13 +42,19 @@ If you don't have git installed Download the [.zip file](https://github.com/qtea
 Open the .zip file and save the files in a directory of your choosing and enter the folder in the terminal.
 
 ```bash
-  cd path/to/qte.sh
+  cd path/to/qte-cli-main/qte.sh
 ```
 
 Make it executable permissions using 
 
 ```bash
   chmod +x qte.sh
+```
+
+Create a dir
+
+```bash
+  sudo mkdir /usr/local/bin
 ```
 
 Then, create a symlink to the script using
