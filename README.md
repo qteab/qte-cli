@@ -40,10 +40,6 @@ Then, create a symlink to the script using
 You can now run the qte command in the terminal 🥳
 
 ```bash
-  qte
-```
-or
-```bash
   qte setup
 ```
 
