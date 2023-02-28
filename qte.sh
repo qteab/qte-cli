@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 
 # Check if the user provided a command-line argument
 if [[ "$1" == "setup" ]]; then
@@ -20,7 +20,8 @@ echo " "
     echo "3. Update all programs"
     echo "4. Uninstall all programs"
     echo "5. Quit"
-    read -p "Enter your choice (1-5): " choice
+    echo "Enter your choice (1-5): \c"
+    read choice
 
     # Check the user's choice and perform the appropriate action
     case $choice in
