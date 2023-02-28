@@ -122,7 +122,7 @@ echo " "
             fi
 
             # Install 1Password using Homebrew
-            if [ "$(command -v google-chrome)" = "" ]; then
+            if [ "$(command -v 1password)" = "" ]; then
                 echo "Installing 1password..."
                 brew install --cask 1password
             else
@@ -234,7 +234,7 @@ echo " "
             fi
 
             # Install 1Password using Homebrew
-            if [ "$(command -v google-chrome)" = "" ]; then
+            if [ "$(command -v 1password)" = "" ]; then
                 echo "Installing 1password..."
                 brew install --cask 1password
             else
@@ -439,26 +439,6 @@ echo " "
                 echo "Aborting..."
                 exit 0  
             fi
-
-            # Uninstall the programs
-            # echo "Uninstalling programs..."
-            # echo "Uninstalling Node..."
-            # brew uninstall node
-            # echo "Uninstalling NVM..."
-            # brew uninstall nvm
-            # echo "Uninstalling Slack..."
-            # brew uninstall --cask slack
-            # echo "Uninstalling Postman..."
-            #  brew uninstall --cask postman
-            # echo "Uninstalling Yarn..."
-            # brew uninstall yarn
-            # echo "Uninstalling RBenv..."
-            # rbenv versions
-            # rbenv uninstall x.y.z # uninstall all versions from the last step
-            # brew uninstall rbenv
-            # echo "Uninstalling Google Chrome..."
-            # brew uninstall --cask google-chrome
-            # echo "Programs uninstalled successfully!"
             ;;
         5) 
             echo "Quitting..."
