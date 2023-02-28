@@ -257,10 +257,10 @@ echo " "
             if [ ! -d "$HOME/.nvm" ]; then
                 echo "Configuring NVM..."
                 mkdir ~/.nvm
-            export NVM_DIR="$HOME/.nvm"
-                . "/usr/local/opt/nvm/nvm.sh"
-                echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bash_profile
-                echo '. "/usr/local/opt/nvm/nvm.sh"' >> ~/.bash_profile
+                export NVM_DIR="$HOME/.nvm"
+                source "/usr/local/opt/nvm/nvm.sh"
+                echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+                echo 'source "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
             fi
 
             # Install Slack using Homebrew
