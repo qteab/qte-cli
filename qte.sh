@@ -36,6 +36,11 @@ echo " "
             if [ "$(command -v brew)" = "" ]; then
                 echo "Installing Homebrew..."
                 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                echo "Configuring Homebrew..."
+                echo 'export PATH=".:$HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"' >> ~/.zshrc
+                echo 'export HOMEBREW_PREFIX="/opt/homebrew"' >> ~/.zshrc
+                echo 'export HOMEBREW_CELLAR="/opt/homebrew/Cellar"' >> ~/.zshrc
+                echo 'export HOMEBREW_NO_ANALYTICS=1' >> ~/.zshrc
             else
                 echo "Homebrew already installed"
             fi
@@ -102,6 +107,8 @@ echo " "
             if [ "$(command -v rbenv)" = "" ]; then
                 echo "Installing RBenv..."
                 brew install rbenv
+                echo "Configuring rbenv..."
+                echo 'eval "$(~/.rbenv/bin/rbenv init - zsh)"' >> ~/.zshrc
             else
                 echo "RBenv already installed"
             fi
@@ -164,6 +171,17 @@ echo " "
                 echo 'source "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
             fi
 
+            # Install pyenv using Homebrew
+            if [ "$(command -v pyenv)" = "" ]; then
+                echo "Installing pyenv..."
+                brew install pyenv
+                echo "Configuring Pyenv..."
+                echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+                echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+                echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+            else
+                echo "pyenv already installed"
+            fi
 
             # Install Slack using Homebrew
             if [ "$(brew ls --versions slack)" = "" ]; then
@@ -193,6 +211,8 @@ echo " "
             if [ "$(command -v rbenv)" = "" ]; then
                 echo "Installing RBenv..."
                 brew install rbenv
+                echo "Configuring rbenv..."
+                echo 'eval "$(~/.rbenv/bin/rbenv init - zsh)"' >> ~/.zshrc
             else
                 echo "RBenv already installed"
             fi
@@ -367,15 +387,28 @@ echo " "
                 echo "cyberduck already installed"
             fi
 
-             # Install Cyberduck using Homebrew
+             # Install android studio using Homebrew
             if [ "$(command -v android-studio)" = "" ]; then
                 echo "Installing android-studio..."
                 brew install --cask android-studio
+                echo "Configuring android-studio..."
+                echo 'export ANDROID_HOME=$HOME/Library/Android/sdk' >> ~/.zshrc
+                echo 'export PATH=$PATH:$ANDROID_HOME/emulator' >> ~/.zshrc
+                echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.zshrc
             else
                 echo "android-studio already installed"
             fi
 
-            # Install Cyberduck using Homebrew
+            # Install Java Development Kit using Homebrew
+            if [ "$(command -v visual-studio)" = "" ]; then
+                echo "Installing Java Development Kit..."
+                brew tap homebrew/cask-versions
+                brew install --cask zulu11
+            else
+                echo "Java Development Kit already installed"
+            fi
+
+            # Install Prepos using Homebrew
             if [ "$(command -v prepros)" = "" ]; then
                 echo "Installing prepros..."
                 brew install --cask prepros

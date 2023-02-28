@@ -24,6 +24,7 @@ Default
 
 Extended
 - All programs in the 'default' list
+- pyenv
 - iTerm2
 - Fig
 - Notion
@@ -32,6 +33,7 @@ Extended
 - Docker
 - Cyberduck
 - Android Studio
+- Java Development Kit
 - Prepos
 
 
