@@ -42,22 +42,24 @@ echo " "
                 echo 'export HOMEBREW_PREFIX="/opt/homebrew"' >> ~/.zshrc
                 echo 'export HOMEBREW_CELLAR="/opt/homebrew/Cellar"' >> ~/.zshrc
                 echo 'export HOMEBREW_NO_ANALYTICS=1' >> ~/.zshrc
+                echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+                eval "$(/opt/homebrew/bin/brew shellenv)"
             else
                 echo "Homebrew already installed"
             fi
 
             # Install Node.js using Homebrew
             if [ "$(command -v node)" = "" ]; then
-                echo "Installing Node.js $NODE_VERSION..."
-                brew install node@$NODE_VERSION
+                echo "Installing Node.js..."
+                brew install node
             else
                 echo "Node already installed"
             fi
 
             # Install NVM using Homebrew
             if [ "$(command -v nvm)" = "" ]; then
-                echo "Installing NVM $NVM_VERSION..."
-                brew install nvm@$NVM_VERSION
+                echo "Installing NVM..."
+                brew install nvm
             else
                 echo "NVM already installed"
             fi
@@ -142,22 +144,29 @@ echo " "
             if [ "$(command -v brew)" = "" ]; then
                 echo "Installing Homebrew..."
                 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                echo "Configuring Homebrew..."
+                echo 'export PATH=".:$HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"' >> ~/.zshrc
+                echo 'export HOMEBREW_PREFIX="/opt/homebrew"' >> ~/.zshrc
+                echo 'export HOMEBREW_CELLAR="/opt/homebrew/Cellar"' >> ~/.zshrc
+                echo 'export HOMEBREW_NO_ANALYTICS=1' >> ~/.zshrc
+                echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+                eval "$(/opt/homebrew/bin/brew shellenv)"
             else
                 echo "Homebrew already installed"
             fi
 
             # Install Node.js using Homebrew
             if [ "$(command -v node)" = "" ]; then
-                echo "Installing Node.js $NODE_VERSION..."
-                brew install node@$NODE_VERSION
+                echo "Installing Node.js ..."
+                brew install node
             else
                 echo "Node already installed"
             fi
 
             # Install NVM using Homebrew
             if [ "$(command -v nvm)" = "" ]; then
-                echo "Installing NVM $NVM_VERSION..."
-                brew install nvm@$NVM_VERSION
+                echo "Installing NVM ..."
+                brew install nvm
             else
                 echo "NVM already installed"
             fi
@@ -170,6 +179,30 @@ echo " "
                 source "/usr/local/opt/nvm/nvm.sh"
                 echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
                 echo 'source "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
+            fi
+
+            # Install Slack using Homebrew
+            if [ "$(brew ls --versions slack)" = "" ]; then
+                echo "Installing Slack..."
+                brew install --cask slack
+            else
+                echo "Slack already installed"
+            fi
+
+            # Install Postman using Homebrew
+            if [ "$(command -v postman)" = "" ]; then
+                echo "Installing Slack..."
+                brew install --cask postman
+            else
+                echo "Postman already installed"
+            fi
+
+            # Install Yarn using Homebrew
+            if [ "$(command -v yarn)" = "" ]; then
+                echo "Installing yarn..."
+                brew install yarn
+            else
+                echo "yarn already installed"
             fi
 
             # Install pyenv using Homebrew
@@ -184,134 +217,12 @@ echo " "
                 echo "pyenv already installed"
             fi
 
-            # Install Slack using Homebrew
-            if [ "$(brew ls --versions slack)" = "" ]; then
-                echo "Installing Slack..."
-                brew install --cask slack
-            else
-                echo "Slack already installed"
-            fi
-
-            # Install Postman using Homebrew
-            if [ "$(command -v postman)" = "" ]; then
-                echo "Installing Slack..."
-                brew install --cask postman
-            else
-                echo "Postman already installed"
-            fi
-
-            # Install Yarn using Homebrew
-            if [ "$(command -v yarn)" = "" ]; then
-                echo "Installing yarn..."
-                brew install yarn
-            else
-                echo "yarn already installed"
-            fi
-
             # Install RBenv using Homebrew
             if [ "$(command -v rbenv)" = "" ]; then
                 echo "Installing RBenv..."
                 brew install rbenv
                 echo "Configuring rbenv..."
                 echo 'eval "$(~/.rbenv/bin/rbenv init - zsh)"' >> ~/.zshrc
-            else
-                echo "RBenv already installed"
-            fi
-
-            # Install VS code using Homebrew
-            if [ "$(command -v visual-studio)" = "" ]; then
-                echo "Installing visual-studio..."
-                brew install --cask visual-studio
-            else
-                echo "visual-studio already installed"
-            fi
-
-            # Install Google Chrome using Homebrew
-            if [ "$(command -v google-chrome)" = "" ]; then
-                echo "Installing google-chrome..."
-                brew install --cask google-chrome
-            else
-                echo "google-chrome already installed"
-            fi
-
-            # Install 1Password using Homebrew
-            if [ "$(command -v 1password)" = "" ]; then
-                echo "Installing 1password..."
-                brew install --cask 1password
-            else
-                echo "1password already installed"
-            fi
-            ;;
-        2) 
-            echo "Installing extended programs..."
-            # Code to install programs
-            # Install Xcode Command Line Tools
-            
-            echo "Installing Xcode Command Line Tools..."
-            xcode-select --install
-
-            # Install Homebrew
-            if [ "$(command -v brew)" = "" ]; then
-                echo "Installing Homebrew..."
-                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            else
-                echo "Homebrew already installed"
-            fi
-
-            # Install Node.js using Homebrew
-            if [ "$(command -v node)" = "" ]; then
-                echo "Installing Node.js $NODE_VERSION..."
-                brew install node@$NODE_VERSION
-            else
-                echo "Node already installed"
-            fi
-
-            # Install NVM using Homebrew
-            if [ "$(command -v nvm)" = "" ]; then
-                echo "Installing NVM $NVM_VERSION..."
-                brew install nvm@$NVM_VERSION
-            else
-                echo "NVM already installed"
-            fi
-
-            # Configure NVM
-            if [ ! -d "$HOME/.nvm" ]; then
-                echo "Configuring NVM..."
-                mkdir ~/.nvm
-                export NVM_DIR="$HOME/.nvm"
-                source "/usr/local/opt/nvm/nvm.sh"
-                echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
-                echo 'source "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
-            fi
-
-            # Install Slack using Homebrew
-            if [ "$(brew ls --versions slack)" = "" ]; then
-                echo "Installing Slack..."
-                brew install --cask slack
-            else
-                echo "Slack already installed"
-            fi
-
-            # Install Postman using Homebrew
-            if [ "$(command -v postman)" = "" ]; then
-                echo "Installing Slack..."
-                brew install --cask postman
-            else
-                echo "Postman already installed"
-            fi
-
-            # Install Yarn using Homebrew
-            if [ "$(command -v yarn)" = "" ]; then
-                echo "Installing yarn..."
-                brew install yarn
-            else
-                echo "yarn already installed"
-            fi
-
-            # Install RBenv using Homebrew
-            if [ "$(command -v rbenv)" = "" ]; then
-                echo "Installing RBenv..."
-                brew install rbenv
             else
                 echo "RBenv already installed"
             fi
@@ -416,7 +327,6 @@ echo " "
             else
                 echo "prepros already installed"
             fi
-
             ;;
         3) 
             echo "Updating programs..."
