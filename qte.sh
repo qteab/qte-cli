@@ -299,6 +299,14 @@ echo " "
                 echo "cyberduck already installed"
             fi
 
+            # Install watchman using Homebrew
+            if [ "$(command -v watchman)" = "" ]; then
+                echo "Installing watchman..."
+                brew install watchman
+            else
+                echo "watchman already installed"
+            fi
+
              # Install android studio using Homebrew
             if [ "$(command -v android-studio)" = "" ]; then
                 echo "Installing android-studio..."
@@ -326,6 +334,15 @@ echo " "
                 brew install --cask prepros
             else
                 echo "prepros already installed"
+            fi
+
+            # Install postgresql using Homebrew
+            if [ "$(command -v postgresql)" = "" ]; then
+                echo "Installing postgresql..."
+                brew install postgresql@15
+                echo 'export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"' >> ~/.zshrc
+            else
+                echo "postgresql already installed"
             fi
             ;;
         3) 
