@@ -328,6 +328,14 @@ echo " "
                 echo "Java Development Kit already installed"
             fi
 
+            # Install Cocoapods using Homebrew
+            if [ "$(command -v cocoapods)" = "" ]; then
+                echo "Installing Cocoapods..."
+                brew install cocoapods
+            else
+                echo "Cocoapods already installed"
+            fi
+
             # Install Prepos using Homebrew
             if [ "$(command -v prepros)" = "" ]; then
                 echo "Installing prepros..."
@@ -343,6 +351,14 @@ echo " "
                 echo 'export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"' >> ~/.zshrc
             else
                 echo "postgresql already installed"
+            fi
+
+            # Install PHP using Homebrew
+            if [ "$(command -v php)" = "" ]; then
+                echo "Installing php..."
+                brew install php
+            else
+                echo "php already installed"
             fi
             ;;
         3) 
