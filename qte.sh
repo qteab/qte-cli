@@ -33,8 +33,8 @@ echo " "
             echo "Installing Xcode Command Line Tools..."
             xcode-select --install
 
-            echo "Installing Rosetta2"
-            sudo softwareupdate --install-rosetta --agree-to-license
+            echo "Installing Rosetta
+            sudo softwareupdate --install-rosetta--agree-to-license
 
             # Install Homebrew
             if [ "$(command -v brew)" = "" ]; then
@@ -151,7 +151,7 @@ echo " "
             echo "Installing Xcode Command Line Tools..."
             xcode-select --install
 
-            echo "Installing Rosetta2"
+            echo "Installing Rosetta"
             sudo softwareupdate --install-rosetta --agree-to-license
 
             # Install Homebrew
