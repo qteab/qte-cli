@@ -11,6 +11,7 @@ These programs are installed upon running
 
 Default
 - Xcode Command Line Tools
+- Rosetta 2
 - Homebrew
 - Node
 - NVM

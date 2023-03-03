@@ -33,6 +33,9 @@ echo " "
             echo "Installing Xcode Command Line Tools..."
             xcode-select --install
 
+            echo "Installing Rosetta2"
+            sudo softwareupdate --install-rosetta --agree-to-license
+
             # Install Homebrew
             if [ "$(command -v brew)" = "" ]; then
                 echo "Installing Homebrew..."
@@ -44,6 +47,7 @@ echo " "
                 echo 'export HOMEBREW_NO_ANALYTICS=1' >> ~/.zshrc
                 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
                 eval "$(/opt/homebrew/bin/brew shellenv)"
+                brew tap homebrew/cask-versions
             else
                 echo "Homebrew already installed"
             fi
@@ -74,6 +78,17 @@ echo " "
                 echo 'source "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
             fi
 
+            # Install Yarn using NVM
+            if [ "$(command -v yarn)" = "" ]; then
+                echo "Installing yarn..."
+                nvm install 18
+                nvm alias default 18
+                nvm use
+                npm -i -g yarn 
+            else
+                echo "yarn already installed"
+            fi
+
             # Install Slack using Homebrew
             if [ "$(brew ls --versions slack)" = "" ]; then
                 echo "Installing Slack..."
@@ -88,14 +103,6 @@ echo " "
                 brew install --cask postman
             else
                 echo "Postman already installed"
-            fi
-
-            # Install Yarn using Homebrew
-            if [ "$(command -v yarn)" = "" ]; then
-                echo "Installing yarn..."
-                brew install yarn
-            else
-                echo "yarn already installed"
             fi
 
             # Install VS code using Homebrew
@@ -131,6 +138,10 @@ echo " "
             else
                 echo "1password already installed"
             fi
+            
+            # Setup done
+            source ~/.zshrc
+            echo "Done!🍻"
             ;;
         2) 
             echo "Installing extended programs..."
@@ -139,6 +150,9 @@ echo " "
             
             echo "Installing Xcode Command Line Tools..."
             xcode-select --install
+
+            echo "Installing Rosetta2"
+            sudo softwareupdate --install-rosetta --agree-to-license
 
             # Install Homebrew
             if [ "$(command -v brew)" = "" ]; then
@@ -151,6 +165,7 @@ echo " "
                 echo 'export HOMEBREW_NO_ANALYTICS=1' >> ~/.zshrc
                 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
                 eval "$(/opt/homebrew/bin/brew shellenv)"
+                brew tap homebrew/cask-versions
             else
                 echo "Homebrew already installed"
             fi
@@ -181,6 +196,18 @@ echo " "
                 echo 'source "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
             fi
 
+            # Install Yarn using NVM
+            if [ "$(command -v yarn)" = "" ]; then
+                echo "Installing yarn..."
+                nvm install 18
+                nvm alias default 18
+                echo "18" > .nvmrc
+                nvm use
+                npm install -g yarn
+            else
+                echo "yarn already installed"
+            fi
+
             # Install Slack using Homebrew
             if [ "$(brew ls --versions slack)" = "" ]; then
                 echo "Installing Slack..."
@@ -195,14 +222,6 @@ echo " "
                 brew install --cask postman
             else
                 echo "Postman already installed"
-            fi
-
-            # Install Yarn using Homebrew
-            if [ "$(command -v yarn)" = "" ]; then
-                echo "Installing yarn..."
-                brew install yarn
-            else
-                echo "yarn already installed"
             fi
 
             # Install pyenv using Homebrew
@@ -321,7 +340,7 @@ echo " "
 
             # Install Java Development Kit using Homebrew
             if [ "$(command -v visual-studio)" = "" ]; then
-                echo "Installing Java Development Kit..."
+                echo "Installing visual-studio..."
                 brew tap homebrew/cask-versions
                 brew install --cask zulu11
             else
@@ -360,6 +379,10 @@ echo " "
             else
                 echo "php already installed"
             fi
+
+            # Setup done
+            source ~/.zshrc
+            echo "Done!🍻"
             ;;
         3) 
             echo "Updating programs..."
