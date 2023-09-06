@@ -34,7 +34,7 @@ echo " "
             xcode-select --install
 
             echo "Installing Rosetta
-            sudo softwareupdate --install-rosetta--agree-to-license
+            sudo softwareupdate --install-rosetta--agree-to-license"
 
             # Install Homebrew
             if [ "$(command -v brew)" = "" ]; then
