@@ -21,7 +21,7 @@ echo " "
     echo "4. Uninstall all programs"
     echo "5. Install recommended VS Code extensions"
     echo "6. Quit"
-    echo "Enter your choice (1-5): \c"
+    echo "Enter your choice (1-6): \c"
     read choice
 
     # Check the user's choice and perform the appropriate action
