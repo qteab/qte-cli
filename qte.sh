@@ -19,8 +19,9 @@ echo " "
     echo "2. Install programs [extended]"
     echo "3. Update all programs"
     echo "4. Uninstall all programs"
-    echo "5. Quit"
-    echo "Enter your choice (1-5): \c"
+    echo "5. Install recommended VS Code extensions"
+    echo "6. Quit"
+    echo "Enter your choice (1-6): \c"
     read choice
 
     # Check the user's choice and perform the appropriate action
@@ -33,7 +34,7 @@ echo " "
             echo "Installing Xcode Command Line Tools..."
             xcode-select --install
 
-            echo "Installing Rosetta
+            echo "Installing Rosetta"
             sudo softwareupdate --install-rosetta--agree-to-license
 
             # Install Homebrew
@@ -407,7 +408,67 @@ echo " "
                 exit 0  
             fi
             ;;
-        5) 
+        5)
+            function prompt_extension {
+            echo "--------------------------------------------------------------------------------"
+            echo "$1"
+            echo ""
+            echo "$2"
+            echo "--------------------------------------------------------------------------------"
+            while true; do
+                read "yn?Do you wish to install this extension? (y/n) q to quit:" 
+                case $yn in
+                    [Yy]* ) code --install-extension $3 ; break;;
+                    [Nn]* ) break;;
+                    [Qq]* ) exit;;
+                    * ) echo "Please answer y to install, n to skip or q to quit.";;
+                esac
+            done
+            }
+
+            if [ "$(command -v code)" = "" ]; then
+                echo "Does not have code command, trying to find VS Code installation"
+                # Asume we have VS Code installed but not in PATH and try to find it
+                if [ -d ~/Downloads/Visual\ Studio\ Code.app ]; then
+                    echo "Found VS Code in ~/Downloads/Visual Studio Code.app"
+                    echo "Adding VS Code to path"
+                    export PATH="$PATH:/Users/$USER/Downloads/Visual Studio Code.app/Contents/Resources/app/bin"
+                elif [ -d /Applications/Visual\ Studio\ Code.app ]; then
+                    echo "Found VS Code in /Applications/Visual Studio Code.app"
+                    echo "Adding VS Code to path"
+                    export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+                else
+                    echo "Could not find VS Code in ~/Downloads/Visual Studio Code.app or /Applications/Visual Studio Code.app"
+                    echo "Please install VS Code and try again"
+                    exit 1
+                fi
+
+            fi
+
+            prompt_extension "🚪  Auto Close Tag - Automatically closes HTML tags" "https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag" "formulahendry.auto-close-tag"
+            prompt_extension "🤝  Auto Rename Tag - Automatically renames matching HTML tag when renaming one" "https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag" "formulahendry.auto-rename-tag"
+            prompt_extension "🎨  Color Highlight - Highlights colors in the editor" "https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight" "naumovs.color-highlight"
+            prompt_extension "⛔️  Error Lens - Shows errors in the editor, instead of having to hover over them" "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens" "usernamehw.errorlens"
+            prompt_extension "⏱️  ES7+ React/Redux/React-Native snippets - Snippets for React" "https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets" "dsznajder.es7-react-js-snippets"
+            prompt_extension "🗒️  ESLint - Linter for JavaScript" "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" "dbaeumer.vscode-eslint"
+            prompt_extension "🗂️  File Utils - Adds a bunch of file utils to VS Code" "https://marketplace.visualstudio.com/items?itemName=sleistner.vscode-fileutils" "sleistner.vscode-fileutils"
+            prompt_extension "🤖  Github Copilot - AI pair programming" "https://marketplace.visualstudio.com/items?itemName=GitHub.copilot" "GitHub.copilot"
+            prompt_extension "🔍  GitLens - Improves git in VS Code, especially stashes and blame" "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" "eamodio.gitlens"
+            prompt_extension "🌄  Image Preview - Shows image preview in the gutter" "https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview" "kisstkondoros.vscode-gutter-preview"
+            prompt_extension "🔡  Multiple cursor case preserve - Preserves case when using multiple cursors" "https://marketplace.visualstudio.com/items?itemName=Cardinal90.multi-cursor-case-preserve" "Cardinal90.multi-cursor-case-preserve"
+            prompt_extension "🎩  Prettier - Code formatter" "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" "esbenp.prettier-vscode"
+            prompt_extension "💅  Pretty TypeScript Errors - Shows slightly more readable TypeScript errors" "https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors" "yoavbls.pretty-ts-errors"
+            prompt_extension "🔬  Quokka.js - JavaScript playground, good for prototyping" "https://marketplace.visualstudio.com/items?itemName=WallabyJs.quokka-vscode" "WallabyJs.quokka-vscode"
+            prompt_extension "🌩️  Thunder Client - HTTP client for VS Code, lightweight substitute for Postman" "https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client" "rangav.vscode-thunder-client"
+            prompt_extension "📝  TODO Highlight - Highlights TODOs & FIXMEs in the editor" "https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight" "wayou.vscode-todo-highlight"
+            prompt_extension "🌲  Todo Tree - Shows all TODOs in the project, without having to search for them" "https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree" "Gruntfuggly.todo-tree"
+            prompt_extension "🥸  VSCode Faker - Generates fake data for you" "https://marketplace.visualstudio.com/items?itemName=deerawan.vscode-faker" "deerawan.vscode-faker"
+            prompt_extension "🖨️  vscode-pdf - PDF viewer" "https://marketplace.visualstudio.com/items?itemName=tomoki1207.pdf" "tomoki1207.pdf"
+            prompt_extension "🐶  vscode-pets - Shows cute pets (not really useful)" "https://marketplace.visualstudio.com/items?itemName=miyauchi.vscode-pets" "miyauchi.vscode-pets"
+
+            echo "Done installing extensions"
+            ;;
+        6) 
             echo "Quitting..."
             exit 0
             ;;
